@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ensemble contre la pollution</title>
+    <!-- Google Fonts: Roboto pour les titres, Open Sans pour le corps de texte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto:wght@700;900&display=swap" rel="stylesheet">
+    <!-- Lien vers le fichier CSS principal -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- BARRE DE NAVIGATION (Glassmorphism) -->
+    <nav class="navbar" role="navigation" aria-label="Navigation principale">
+        <div class="navbar__container">
+            <a href="#" class="navbar__logo">Ensemble</a>
+            <ul class="navbar__menu">
+                <li class="navbar__item"><a href="#pollution-types" class="navbar__link">Types de Pollution</a></li>
+                <li class="navbar__item"><a href="#solutions" class="navbar__link">Solutions</a></li>
+                <li class="navbar__item"><a href="#conseils" class="navbar__link">Conseils</a></li>
+                <li class="navbar__item"><a href="#contact" class="navbar__link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HEADER & HERO SECTION -->
+    <header class="header" role="banner">
+        <!-- L'overlay inclut maintenant un dégradé -->
+        <div class="header__overlay"></div>
+        <div class="header__content">
+            <h1 class="header__title">Ensemble contre la pollution</h1>
+            <p class="header__subtitle">Agissons maintenant pour un avenir plus propre et plus sain. Chaque geste compte.</p>
+            <!-- Bouton d'appel à l'action avec effet de texte "reveal" -->
+            <a href="#pollution-types" class="header__button button" aria-label="Découvrir les types de pollution et comment agir">Découvrir comment agir</a>
+        </div>
+    </header>
+
+    <main id="main-content" role="main">
+        <!-- SÉPARATEUR DÉCORATIF SVG -->
+        <div class="divider-svg divider-svg--top">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none">
+                <path class="divider-svg__path" d="M0,60C150,100,350,0,500,0C650,0,850,100,1000,60L1000,0L0,0L0,60Z"></path>
+            </svg>
+        </div>
+
+        <!-- SECTION TYPES DE POLLUTION -->
+        <section id="pollution-types" class="section section--pollution-types" aria-labelledby="pollution-types-title">
+            <h2 id="pollution-types-title" class="section__title">Les différents types de pollution</h2>
+            <div class="pollution-cards">
+                <!-- Carte Pollution de l'Air -->
+                <div class="card card--pollution" role="article" aria-label="Carte sur la pollution de l'air">
+                    <div class="card__icon">
+                        <!-- Icône SVG pour l'air -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4c-3.72 0-6.85 2.57-7.77 6.04C2.84 10.64 2 11.88 2 13c0 2.21 1.79 4 4 4h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM13 15v-3h3l-4-5v3H8l4 5h1z"/>
+                        </svg>
+                    </div>
+                    <h3 class="card__title">Pollution de l'Air</h3>
+                    <p class="card__text">Émissions industrielles, trafic routier, chauffage... L'air que nous respirons est souvent chargé de particules fines et de gaz nocifs, impactant notre santé et le climat.</p>
+                </div>
+
+                <!-- Carte Pollution de l'Eau -->
+                <div class="card card--pollution" role="article" aria-label="Carte sur la pollution de l'eau">
+                    <div class="card__icon">
+                        <!-- Icône SVG pour l'eau -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 14.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                            <path d="M12 4c-4.41 0-8 3.59-8 8 0 1.85.63 3.55 1.69 4.9L12 20.5l6.31-3.6C17.37 15.55 18 13.85 18 12c0-4.41-3.59-8-8-8zm0 13c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/>
+                        </svg>
+                    </div>
+                    <h3 class="card__title">Pollution de l'Eau</h3>
+                    <p class="card__text">Déversements industriels, pesticides agricoles, déchets plastiques... Nos rivières, lacs et océans souffrent, menaçant la biodiversité aquatique et nos ressources en eau potable.</p>
+                </div>
+
+                <!-- Carte Pollution du Sol -->
+                <div class="card card--pollution" role="article" aria-label="Carte sur la pollution du sol">
+                    <div class="card__icon">
+                        <!-- Icône SVG pour le sol/plante -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M17 6h-2V2H9v4H7V2H2v4h2v14h16V6h-5zm-7-2h4v2h-4V4zm-6 2h2v14H4V6zm14 14H6V8h12v12z"/>
+                            <path d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="card__title">Pollution du Sol</h3>
+                    <p class="card__text">Accumulation de déchets, produits chimiques, métaux lourds... Le sol, essentiel à l'agriculture et aux écosystèmes, est dégradé, affectant la chaîne alimentaire et la fertilité.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SÉPARATEUR DÉCORATIF SVG -->
+        <div class="divider-svg divider-svg--bottom">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none">
+                <path class="divider-svg__path" d="M0,60C150,100,350,0,500,0C650,0,850,100,1000,60L1000,100L0,100L0,60Z"></path>
+            </svg>
+        </div>
+
+        <!-- SECTION SOLUTIONS DÉTAILLÉES (Onglets CSS-only) -->
+        <section id="solutions" class="section section--solutions" aria-labelledby="solutions-title">
+            <h2 id="solutions-title" class="section__title">Solutions détaillées pour un impact durable</h2>
+            <div class="tabs-container">
+                <div class="tabs-nav" role="tablist">
+                    <input type="radio" name="tab-group" id="tab1" checked aria-controls="panel1" class="tabs-nav__input">
+                    <label for="tab1" class="tabs-nav__label" role="tab" tabindex="0">Énergie Verte</label>
+
+                    <input type="radio" name="tab-group" id="tab2" aria-controls="panel2" class="tabs-nav__input">
+                    <label for="tab2" class="tabs-nav__label" role="tab" tabindex="0">Économie Circulaire</label>
+
+                    <input type="radio" name="tab-group" id="tab3" aria-controls="panel3" class="tabs-nav__input">
+                    <label for="tab3" class="tabs-nav__label" role="tab" tabindex="0">Protection des Écosystèmes</label>
+                </div>
+
+                <div id="panel1" class="tab-content" role="tabpanel" aria-labelledby="tab1">
+                    <h3 class="tab-content__title">Transition vers les Énergies Renouvelables</h3>
+                    <p class="tab-content__text">Investir massivement dans le solaire, l'éolien, l'hydroélectricité et la géothermie est crucial. Ces sources d'énergie réduisent drastiquement les émissions de gaz à effet de serre et la dépendance aux combustibles fossiles. Encouragez l'installation de panneaux solaires chez vous et soutenez les politiques favorisant les énergies propres.</p>
+                </div>
+
+                <div id="panel2" class="tab-content" role="tabpanel" aria-labelledby="tab2">
+                    <h3 class="tab-content__title">Adopter l'Économie Circulaire</h3>
+                    <p class="tab-content__text">L'économie circulaire vise à réduire les déchets et à maximiser l'utilisation des ressources. Cela inclut le recyclage, la réutilisation, la réparation et la conception de produits durables. En tant que consommateur, privilégiez les produits avec une longue durée de vie, réparez au lieu de jeter, et participez aux programmes de recyclage locaux.</p>
+                </div>
+
+                <div id="panel3" class="tab-content" role="tabpanel" aria-labelledby="tab3">
+                    <h3 class="tab-content__title">Préserver la Biodiversité et les Écosystèmes</h3>
+                    <p class="tab-content__text">La protection des forêts, des océans et des zones humides est essentielle pour maintenir l'équilibre écologique. Ces écosystèmes absorbent le carbone, filtrent l'eau et abritent une biodiversité vitale. Soutenez les organisations de conservation, participez à des nettoyages de sites naturels et informez-vous sur les espèces menacées.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SÉPARATEUR DÉCORATIF SVG -->
+        <div class="divider-svg divider-svg--top">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none">
+                <path class="divider-svg__path" d="M0,60C150,100,350,0,500,0C650,0,850,100,1000,60L1000,0L0,0L0,60Z"></path>
+            </svg>
+        </div>
+
+        <!-- SECTION CONSEILS -->
+        <section id="conseils" class="section section--conseils" aria-labelledby="conseils-title">
+            <h2 id="conseils-title" class="section__title">Nos conseils pour agir au quotidien</h2>
+            <ol class="conseils-list">
+                <li class="conseils-list__item">Réduisez votre consommation d'énergie (éteignez les lumières, débranchez les appareils).</li>
+                <li class="conseils-list__item">Privilégiez les transports doux (vélo, marche) ou les transports en commun.</li>
+                <li class="conseils-list__item">Triez vos déchets et réduisez votre production de plastique.</li>
+                <li class="conseils-list__item">Consommez local et de saison pour limiter l'empreinte carbone.</li>
+                <li class="conseils-list__item">Soutenez les initiatives et associations environnementales.</li>
+                <li class="conseils-list__item">Plantez des arbres et participez à des actions de nettoyage.</li>
+            </ol>
+        </section>
+    </main>
+
+    <!-- FOOTER SECTION -->
+    <footer id="contact" class="footer" role="contentinfo">
+        <div class="footer__content">
+            <p class="footer__text">Contactez-nous : <a href="mailto:contact@pollution.org" class="footer__link">contact@pollution.org</a></p>
+            <p class="footer__text">&copy; 2023 Ensemble contre la pollution. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,623 @@
+/* VARIABLES DE COULEURS */
+:root {
+    /* Couleurs principales */
+    --color-dark-gray: #2F2F2F; /* Gris foncé pour le texte principal et le footer */
+    --color-dark-green: #1F7A5A; /* Vert foncé pour les accents, boutons, titres de cartes */
+    --color-soft-blue: #6FAED9; /* Bleu doux pour les accents, hover, numéros de liste */
+    --color-light-bg: #F8F8F8; /* Fond clair pour le contenu des sections */
+    --color-white: #FFFFFF; /* Blanc pour le texte sur fond sombre et éléments clairs */
+    --color-text-light: #555555; /* Gris clair pour le texte secondaire */
+
+    /* Couleurs pour les dégradés et overlays */
+    --gradient-hero-start: rgba(47, 47, 47, 0.8); /* Début du dégradé du héros (gris foncé transparent) */
+    --gradient-hero-end: rgba(31, 122, 90, 0.6);   /* Fin du dégradé du héros (vert foncé transparent) */
+    --glass-bg: rgba(255, 255, 255, 0.15); /* Fond pour l'effet glassmorphism */
+    --glass-border: rgba(255, 255, 255, 0.2); /* Bordure pour l'effet glassmorphism */
+
+    /* Ombres */
+    --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.15);
+    --shadow-button: 0 4px 8px rgba(0, 0, 0, 0.2);
+    --shadow-button-hover: 0 6px 12px rgba(0, 0, 0, 0.25);
+    --shadow-layered-1: 0 1px 2px rgba(0, 0, 0, 0.07);
+    --shadow-layered-2: 0 2px 4px rgba(0, 0, 0, 0.07);
+    --shadow-layered-3: 0 4px 8px rgba(0, 0, 0, 0.07);
+    --shadow-layered-4: 0 8px 16px rgba(0, 0, 0, 0.07);
+
+    /* Typographie */
+    --font-heading: 'Roboto', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+}
+
+/* STYLES GÉNÉRAUX */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    color: var(--color-dark-gray);
+    background-color: var(--color-light-bg);
+    scroll-behavior: smooth; /* Défilement doux pour les ancres */
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    color: var(--color-dark-gray);
+    margin-bottom: 0.8em;
+}
+
+h1 {
+    font-size: 3.5em; /* Taille pour le titre principal */
+    font-weight: 900;
+}
+
+h2 {
+    font-size: 2.5em; /* Taille pour les titres de section */
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1.5em;
+}
+
+h3 {
+    font-size: 1.8em; /* Taille pour les titres de carte et d'onglet */
+    font-weight: 700;
+}
+
+p {
+    font-size: 1.1em;
+    margin-bottom: 1em;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-dark-green);
+    transition: color 0.3s ease, outline 0.2s ease; /* Ajout de transition pour l'outline */
+}
+
+a:hover {
+    color: var(--color-soft-blue);
+}
+
+a:focus-visible { /* Style de focus pour l'accessibilité */
+    outline: 2px solid var(--color-soft-blue);
+    outline-offset: 3px;
+    border-radius: 3px;
+}
+
+/* BOUTON GÉNÉRIQUE (CTA avec effet "reveal") */
+.button {
+    position: relative;
+    display: inline-block;
+    background-color: var(--color-dark-green);
+    color: var(--color-white);
+    padding: 1em 2em;
+    border-radius: 5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    overflow: hidden; /* Cache le pseudo-élément avant l'animation */
+    transition: color 0.4s ease; /* Transition pour la couleur du texte */
+    box-shadow: var(--shadow-button);
+    z-index: 1; /* Assure que le texte est au-dessus du pseudo-élément */
+}
+
+.button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-soft-blue); /* Couleur de "révélation" */
+    transform: translateX(-100%); /* Commence hors de vue à gauche */
+    transition: transform 0.4s ease; /* Animation de glissement */
+    z-index: -1; /* Place le pseudo-élément derrière le texte */
+}
+
+.button:hover {
+    color: var(--color-white); /* Le texte reste blanc ou change subtilement */
+    box-shadow: var(--shadow-button-hover);
+    transform: translateY(-2px);
+}
+
+.button:hover::before {
+    transform: translateX(0); /* Glisse pour couvrir le bouton */
+}
+
+.button:focus-visible {
+    outline: 2px solid var(--color-soft-blue);
+    outline-offset: 3px;
+    border-radius: 5px;
+}
+
+/* BARRE DE NAVIGATION (Glassmorphism) */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--glass-bg); /* Fond semi-transparent */
+    backdrop-filter: blur(10px); /* Effet de flou pour le glassmorphism */
+    -webkit-backdrop-filter: blur(10px); /* Compatibilité Safari */
+    border-bottom: 1px solid var(--glass-border); /* Bordure subtile */
+    padding: 1em 0;
+    z-index: 1000; /* Assure que la nav est au-dessus de tout */
+    box-shadow: var(--shadow-light);
+}
+
+.navbar__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2em;
+}
+
+.navbar__logo {
+    font-family: var(--font-heading);
+    font-size: 1.8em;
+    font-weight: 900;
+    color: var(--color-white); /* Couleur du logo sur fond glassmorphism */
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    transition: color 0.3s ease;
+}
+
+.navbar__logo:hover {
+    color: var(--color-soft-blue);
+}
+
+.navbar__menu {
+    list-style: none;
+    display: flex;
+    gap: 2em;
+}
+
+.navbar__link {
+    color: var(--color-white);
+    font-weight: 600;
+    font-size: 1.05em;
+    transition: color 0.3s ease;
+}
+
+.navbar__link:hover,
+.navbar__link:focus-visible {
+    color: var(--color-soft-blue);
+    outline: none; /* Géré par le style global a:focus-visible */
+}
+
+/* HEADER & HERO SECTION */
+.header {
+    position: relative;
+    height: 100vh;
+    /* Personnaliser l'image de fond ici */
+    background: url('https://via.placeholder.com/1920x1080/6FAED9/2F2F2F?text=Brouillard+Industriel') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--color-white);
+    overflow: hidden;
+    padding-top: 60px; /* Pour compenser la barre de navigation fixe */
+}
+
+.header__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Dégradé avec transparence pour l'overlay */
+    background: linear-gradient(to bottom, var(--gradient-hero-start), var(--gradient-hero-end));
+    z-index: 1;
+}
+
+.header__content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 2em;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); /* Ombre légère pour le texte */
+}
+
+.header__title {
+    color: var(--color-white);
+    margin-bottom: 0.5em;
+}
+
+.header__subtitle {
+    font-size: 1.3em;
+    margin-bottom: 2em;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* SECTIONS GÉNÉRALES */
+.section {
+    padding: 4em 2em;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section--pollution-types {
+    background-color: var(--color-white);
+}
+
+.section--conseils {
+    background-color: var(--color-light-bg);
+}
+
+.section--solutions {
+    background-color: var(--color-white);
+}
+
+/* SÉPARATEURS DÉCORATIFS SVG */
+.divider-svg {
+    width: 100%;
+    height: 100px; /* Hauteur du séparateur */
+    display: block;
+    overflow: hidden;
+}
+
+.divider-svg--top {
+    margin-top: -1px; /* Pour éviter les espaces blancs entre sections */
+}
+
+.divider-svg--bottom {
+    margin-bottom: -1px;
+}
+
+.divider-svg svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.divider-svg__path {
+    fill: var(--color-light-bg); /* Couleur du fond de la section suivante/précédente */
+    /* Personnaliser la couleur du séparateur ici */
+}
+.section--pollution-types + .divider-svg--bottom .divider-svg__path {
+    fill: var(--color-light-bg); /* Couleur du fond de la section suivante */
+}
+.section--solutions + .divider-svg--top .divider-svg__path {
+    fill: var(--color-white); /* Couleur du fond de la section précédente */
+}
+.section--solutions + .divider-svg--bottom .divider-svg__path {
+    fill: var(--color-light-bg); /* Couleur du fond de la section suivante */
+}
+
+
+/* CARTES DE POLLUTION (Glossy avec hover lift) */
+.pollution-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2em;
+    margin-top: 2em;
+}
+
+.card--pollution {
+    position: relative;
+    background-color: var(--color-white);
+    padding: 2em;
+    border-radius: 10px;
+    /* Ombres en couches */
+    box-shadow: var(--shadow-layered-1), var(--shadow-layered-2), var(--shadow-layered-3);
+    text-align: center;
+    overflow: hidden; /* Pour le pseudo-élément glossy */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Effet glossy */
+.card--pollution::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.1) 100%);
+    opacity: 0.5;
+    pointer-events: none; /* Permet de cliquer à travers le pseudo-élément */
+    border-radius: inherit;
+    z-index: 1;
+}
+
+.card--pollution:hover {
+    transform: translateY(-8px); /* Lift plus prononcé */
+    box-shadow: var(--shadow-layered-1), var(--shadow-layered-2), var(--shadow-layered-3), var(--shadow-layered-4); /* Ombre plus intense */
+}
+
+.card__icon {
+    font-size: 3em; /* Taille pour les icônes SVG */
+    margin-bottom: 0.5em;
+    color: var(--color-dark-green); /* Couleur par défaut pour les icônes */
+    display: inline-flex; /* Pour centrer les SVGs */
+    align-items: center;
+    justify-content: center;
+    width: 1.5em; /* Assure une taille cohérente pour les SVGs */
+    height: 1.5em;
+}
+
+.card__icon svg {
+    width: 100%;
+    height: 100%;
+    fill: var(--color-dark-green); /* Personnaliser la couleur des icônes SVG ici */
+}
+
+.card__title {
+    color: var(--color-dark-green);
+    margin-bottom: 0.5em;
+}
+
+.card__text {
+    color: var(--color-text-light);
+    font-size: 1em;
+}
+
+/* SECTION SOLUTIONS DÉTAILLÉES (Onglets CSS-only) */
+.tabs-container {
+    max-width: 900px;
+    margin: 2em auto;
+    background-color: var(--color-white);
+    border-radius: 10px;
+    box-shadow: var(--shadow-medium);
+    overflow: hidden;
+}
+
+.tabs-nav {
+    display: flex;
+    justify-content: center;
+    background-color: var(--color-dark-gray); /* Fond des boutons d'onglets */
+    padding: 0.5em;
+    border-bottom: 1px solid var(--color-dark-gray);
+}
+
+.tabs-nav__input {
+    display: none; /* Cache les boutons radio */
+}
+
+.tabs-nav__label {
+    padding: 1em 1.5em;
+    color: var(--color-white);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 5px;
+    margin: 0 0.2em;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.tabs-nav__label:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-soft-blue);
+}
+
+.tabs-nav__input:checked + .tabs-nav__label {
+    background-color: var(--color-dark-green); /* Onglet actif */
+    color: var(--color-white);
+    box-shadow: var(--shadow-light);
+}
+
+.tabs-nav__input:focus-visible + .tabs-nav__label {
+    outline: 2px solid var(--color-soft-blue);
+    outline-offset: 3px;
+    border-radius: 5px;
+}
+
+.tab-content {
+    padding: 2em;
+    display: none; /* Cache tous les contenus par défaut */
+    animation: fadeIn 0.5s ease-in-out; /* Animation d'apparition */
+}
+
+/* Affiche le contenu de l'onglet sélectionné */
+.tabs-nav__input:checked + .tabs-nav__label + .tab-content {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.tab-content__title {
+    color: var(--color-dark-green);
+    margin-bottom: 0.8em;
+}
+
+.tab-content__text {
+    color: var(--color-text-light);
+}
+
+/* SECTION CONSEILS */
+.conseils-list {
+    list-style-type: none;
+    counter-reset: item;
+    padding: 0;
+    max-width: 800px;
+    margin: 2em auto 0 auto;
+}
+
+.conseils-list__item {
+    background-color: var(--color-white);
+    margin-bottom: 1em;
+    padding: 1.2em 1.5em;
+    border-left: 5px solid var(--color-dark-green);
+    border-radius: 5px;
+    box-shadow: var(--shadow-light); /* Ombre légère */
+    display: flex;
+    align-items: center;
+    font-size: 1.1em;
+    color: var(--color-dark-gray);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.conseils-list__item:hover {
+    transform: translateX(5px);
+    box-shadow: var(--shadow-medium);
+}
+
+.conseils-list__item::before {
+    counter-increment: item;
+    content: counter(item) ".":
+    font-weight: 700;
+    font-size: 1.3em;
+    color: var(--color-soft-blue); /* Personnaliser la couleur des numéros de liste ici */
+    margin-right: 1em;
+    min-width: 1.5em;
+    text-align: right;
+}
+
+/* FOOTER */
+.footer {
+    background-color: var(--color-dark-gray);
+    color: var(--color-white);
+    text-align: center;
+    padding: 2em 1em;
+    font-size: 0.9em;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1); /* Ombre au-dessus du footer */
+}
+
+.footer__content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer__text {
+    margin-bottom: 0.5em;
+}
+
+.footer__link {
+    color: var(--color-soft-blue); /* Personnaliser la couleur des liens du footer ici */
+}
+
+.footer__link:hover {
+    color: var(--color-white);
+}
+
+/* MEDIA QUERIES */
+
+/* Pour les écrans plus petits que 600px */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2.5em;
+    }
+
+    h2 {
+        font-size: 1.8em;
+    }
+
+    h3 {
+        font-size: 1.5em;
+    }
+
+    p {
+        font-size: 1em;
+    }
+
+    .navbar__container {
+        flex-direction: column;
+        padding: 0.5em 1em;
+    }
+
+    .navbar__logo {
+        margin-bottom: 0.5em;
+    }
+
+    .navbar__menu {
+        flex-direction: column;
+        gap: 0.5em;
+        width: 100%;
+    }
+
+    .navbar__item {
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar__link {
+        display: block;
+        padding: 0.5em 0;
+        border-radius: 5px;
+    }
+
+    .header {
+        padding-top: 120px; /* Ajustement pour la nav bar empilée */
+    }
+
+    .header__subtitle {
+        font-size: 1em;
+    }
+
+    .header__button {
+        padding: 0.8em 1.5em;
+        font-size: 0.9em;
+    }
+
+    .section {
+        padding: 2em 1em;
+    }
+
+    .pollution-cards {
+        grid-template-columns: 1fr; /* Les cartes s'empilent */
+    }
+
+    .card--pollution {
+        padding: 1.5em;
+    }
+
+    .tabs-nav {
+        flex-direction: column;
+    }
+
+    .tabs-nav__label {
+        margin: 0.2em 0;
+    }
+
+    .conseils-list__item {
+        font-size: 0.95em;
+        padding: 1em;
+    }
+
+    .conseils-list__item::before {
+        font-size: 1.1em;
+        margin-right: 0.8em;
+    }
+
+    .divider-svg {
+        height: 50px; /* Réduit la hauteur des séparateurs */
+    }
+}
+
+/* Pour les écrans plus grands que 1200px */
+@media (min-width: 1200px) {
+    h1 {
+        font-size: 4.5em;
+    }
+
+    h2 {
+        font-size: 3em;
+    }
+
+    .header__subtitle {
+        font-size: 1.5em;
+    }
+
+    .section {
+        padding: 6em 2em;
+    }
+
+    .pollution-cards {
+        gap: 3em;
+    }
+
+    .card--pollution {
+        padding: 2.5em;
+    }
+}
